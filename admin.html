@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin - Update Status</title>
+  <style>
+    body{font-family:sans-serif;padding:2rem;background:#f7fafc}
+    .card{background:#fff;padding:1.5rem;border-radius:8px;max-width:520px;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+    label{display:block;margin-top:0.75rem}
+    input[type=text],textarea{width:100%;padding:0.5rem;margin-top:0.25rem}
+    button{margin-top:1rem;padding:0.6rem 1rem;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer}
+    .hint{font-size:0.9rem;color:#555;margin-top:0.5rem}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Update Site Status</h2>
+    <form id="statusForm">
+      <label>Status</label>
+      <input type="text" id="statusInput" value="OK">
+      <label>Uptime / Message</label>
+      <input type="text" id="uptimeInput" value="">
+      <label>Admin Token</label>
+      <input type="text" id="tokenInput" placeholder="Enter admin token (localdev)">
+      <div class="hint">The server expects the admin token in header `x-admin-token` or query `?token=`. For local dev default token is <code>localdev</code>.</div>
+      <button type="submit">Update Status</button>
+    </form>
+    <pre id="result"></pre>
+  </div>
+
+  <script>
+    const form = document.getElementById('statusForm');
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const status = document.getElementById('statusInput').value;
+      const uptime = document.getElementById('uptimeInput').value || new Date().toISOString();
+      const token = document.getElementById('tokenInput').value || '';
+      try{
+        const res = await fetch('/api/status' + (token?('?token='+encodeURIComponent(token)):''), {
+          method:'POST',
+          headers: {
+            'Content-Type':'application/json',
+            ...(token?{'x-admin-token': token}:{})
+          },
+          body: JSON.stringify({status, uptime})
+        });
+        const json = await res.json();
+        document.getElementById('result').textContent = JSON.stringify(json, null, 2);
+      }catch(err){
+        document.getElementById('result').textContent = 'Error: '+err.message;
+      }
+    });
+  </script>
+</body>
+</html>

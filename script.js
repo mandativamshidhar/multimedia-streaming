@@ -40,6 +40,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Copy code to clipboard functionality
     initializeCodeBlocks();
+
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('show');
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    }
 });
 
 function initializeCodeBlocks() {

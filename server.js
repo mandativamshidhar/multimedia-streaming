@@ -104,6 +104,15 @@ server.on('request', (req, res) => {
         req.on('end', () => {
             try {
                 const json = JSON.parse(body);
+                // Simple admin token check: header 'x-admin-token' or query ?token=
+                const token = req.headers['x-admin-token'] || parsedUrl.query.token || process.env.ADMIN_TOKEN || 'localdev';
+                const expected = process.env.ADMIN_TOKEN || 'localdev';
+                if (token !== expected) {
+                    res.writeHead(401, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'Unauthorized' }));
+                    return;
+                }
+
                 const newStatus = {
                     status: json.status || 'Unknown',
                     uptime: json.uptime || new Date().toISOString()

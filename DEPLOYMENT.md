@@ -32,6 +32,34 @@ Option C — Fly.io (free generous allowances)
 3. Set `PORT` and `ADMIN_TOKEN` via `fly secrets set ADMIN_TOKEN=yourtoken`.
 4. `fly deploy` will build using the `Dockerfile` in repo.
 
+Fly.io quick steps (pre-configured)
+1. Install flyctl: https://fly.io/docs/hands-on/install-flyctl/
+2. Login and create/attach app:
+
+```bash
+fly auth login
+fly apps create multimedia-streaming || true
+```
+
+3. Set your admin token secret (required for POST /api/status):
+
+```bash
+fly secrets set ADMIN_TOKEN=your-strong-token
+```
+
+4. Deploy using the included `fly.toml` and `Dockerfile`:
+
+```bash
+fly deploy
+```
+
+5. After deployment, Fly provides a public URL. Visit `https://<your-app>.fly.dev` to open the site.
+
+Notes:
+- Fly uses the provided `Dockerfile` and `fly.toml` to build and expose port 80/443 while the app listens on internal port 8000.
+- For subsequent deployments, run `fly deploy` from the repo root.
+- To remove the app: `fly apps destroy multimedia-streaming`.
+
 Option D — Vercel (static + serverless caveats)
 - Vercel is optimized for static sites and serverless functions. Serverless functions are not suitable for long-lived SSE connections.
 - If you want a purely static site on Vercel and realtime via a managed service (Pusher/Ably/Firebase), update `website/status.js` to use that service.

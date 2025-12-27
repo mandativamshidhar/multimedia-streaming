@@ -1,0 +1,35 @@
+# Build directories
+build/
+cmake-build-debug/
+cmake-build-release/
+out/
+
+# IDE files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Compiled binaries
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+
+# Debug files
+*.pdb
+*.ilk
+*.o
+*.obj
+
+# CMake
+CMakeUserPresets.json
+
+# Other
+*.log

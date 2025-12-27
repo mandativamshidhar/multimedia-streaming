@@ -494,7 +494,7 @@ Once your push succeeds, you can:
 ---
 
 **File this in your memories:**
-- GitHub URL: `https://github.com/YOUR_USERNAME/multimedia-streaming`
+- GitHub URL: `https://github.com/mandativamshidhar/multimedia-streaming`
 - First push date: December 27, 2025
 - Status: PRODUCTION READY
 

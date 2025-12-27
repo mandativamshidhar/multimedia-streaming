@@ -169,11 +169,10 @@ If you haven't done these yet:
 
 ```powershell
 cd "C:\Users\manda\Git_projects\Project"
-git remote set-url origin https://github.com/YOUR_USERNAME/multimedia-streaming.git
 git push -u origin main
 ```
 
-**Replace `YOUR_USERNAME` with your actual GitHub username!**
+Your GitHub repository is already configured: `https://github.com/mandativamshidhar/multimedia-streaming`
 
 ---
 
@@ -192,7 +191,7 @@ To https://github.com/YOUR_USERNAME/multimedia-streaming.git
 Branch 'main' set up to track remote branch 'main' from 'origin'.
 ```
 
-Then visit: `https://github.com/YOUR_USERNAME/multimedia-streaming`
+Then visit: `https://github.com/mandativamshidhar/multimedia-streaming`
 
 Your code should be there! ✅
 

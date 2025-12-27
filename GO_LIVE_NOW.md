@@ -29,18 +29,14 @@ Open PowerShell and run:
 ```powershell
 cd "C:\Users\manda\Git_projects\Project"
 
-# Replace YOUR_USERNAME with your GitHub username
-git remote add origin https://github.com/YOUR_USERNAME/multimedia-streaming.git
-
 # Push to GitHub
-git branch -M main
 git push -u origin main
 ```
 
 Enter your GitHub credentials when prompted.
 
 ### ✅ It's LIVE! 
-Your code is now online at: `https://github.com/YOUR_USERNAME/multimedia-streaming`
+Your code is now online at: `https://github.com/mandativamshidhar/multimedia-streaming`
 
 **Share this link with anyone!** They can:
 - See your source code

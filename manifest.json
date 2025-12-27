@@ -1,0 +1,27 @@
+{
+  "name": "Multimedia Streaming System",
+  "short_name": "M-Stream",
+  "description": "Professional C++ real-time multimedia streaming system",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%236366f1' width='192' height='192'/><path fill='%23fff' d='M60 96l96-57.6v115.2z'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["multimedia", "streaming", "video", "audio"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%236366f1' width='540' height='720'/><text x='50%' y='50%' font-size='48' fill='%23fff' text-anchor='middle' dominant-baseline='middle'>Multimedia Streaming</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ]
+}

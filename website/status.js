@@ -1,3 +1,22 @@
+// status.js: Deployment status script for static web (GitHub Pages compatible)
+// This script fetches a static status.json and updates the DOM. No Node.js/server code.
+
+document.addEventListener('DOMContentLoaded', function() {
+	fetch('status.json')
+		.then(response => response.json())
+		.then(data => {
+			var statusElem = document.getElementById('status');
+			var uptimeElem = document.getElementById('uptime');
+			if (statusElem) statusElem.textContent = data.status || 'Unknown';
+			if (uptimeElem) uptimeElem.textContent = data.uptime || '-';
+		})
+		.catch(() => {
+			var statusElem = document.getElementById('status');
+			var uptimeElem = document.getElementById('uptime');
+			if (statusElem) statusElem.textContent = 'Unavailable';
+			if (uptimeElem) uptimeElem.textContent = '-';
+		});
+});
 #!/usr/bin/env node
 
 /**

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional C++ Real-Time Multimedia Streaming System with H.264/AAC codec support">
+    <meta name="keywords" content="streaming, H.264, AAC, multimedia, C++, real-time">
+    <meta name="theme-color" content="#6366f1">
+    <title>Multimedia Streaming System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%236366f1' width='100' height='100'/><path fill='%23fff' d='M30 50L70 30v40z'/></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%236366f1' width='180' height='180'/><path fill='%23fff' d='M54 90l81.6-51.6v103.2z'/></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="logo-icon">▶</span>
+                <span class="brand-name">Multimedia Streaming</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#architecture" class="nav-link">Architecture</a></li>
+                <li><a href="#getting-started" class="nav-link">Getting Started</a></li>
+                <li><a href="#specs" class="nav-link">Specifications</a></li>
+                <li><a href="#github" class="nav-link">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Real-Time Multimedia Streaming</h1>
+                <p class="subtitle">Professional C++ streaming module for video/audio transmission with H.264/AAC codec support</p>
+                <div class="hero-buttons">
+                    <a href="#getting-started" class="btn btn-primary">Get Started</a>
+                    <a href="#github" class="btn btn-secondary">View on GitHub</a>
+                </div>
+            </div>
+            <div class="hero-features">
+                <div class="feature-tag">H.264 Codec</div>
+                <div class="feature-tag">AAC Codec</div>
+                <div class="feature-tag">TCP/UDP</div>
+                <div class="feature-tag">Low Latency</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Dual Network Stack</h3>
+                    <p>TCP for reliable control/data transmission and UDP for low-latency media streaming with non-blocking I/O.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📹</div>
+                    <h3>Video Codec (H.264)</h3>
+                    <p>Industry-standard H.264 video encoding with support for I/P/B frames, sequence numbering, and timestamps.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔊</div>
+                    <h3>Audio Codec (AAC)</h3>
+                    <p>Advanced Audio Codec support with multiple sample rates and bitrate configurations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Low Latency</h3>
+                    <p>Non-blocking I/O, circular frame buffers, and atomic counters for real-time performance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Parallel Processing</h3>
+                    <p>Parallel video/audio processing with multithreading and background receive thread.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Smart Buffering</h3>
+                    <p>Thread-safe circular frame buffer with configurable sizes and automatic packet queuing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <h2>System Architecture</h2>
+            <div class="architecture-content">
+                <div class="arch-diagram">
+                    <h3>Sender Side</h3>
+                    <div class="pipeline">
+                        <div class="pipeline-step">Capture</div>
+                        <div class="arrow">→</div>
+                        <div class="pipeline-step">Encoder</div>
+                        <div class="arrow">→</div>
+                        <div class="pipeline-step">Buffer</div>
+                        <div class="arrow">→</div>
+                        <div class="pipeline-step">Network</div>
+                    </div>
+                </div>
+                <div class="arch-diagram">
+                    <h3>Receiver Side</h3>
+                    <div class="pipeline">
+                        <div class="pipeline-step">Socket</div>
+                        <div class="arrow">→</div>
+                        <div class="pipeline-step">Network</div>
+                        <div class="arrow">→</div>
+                        <div class="pipeline-step">Buffer</div>
+                        <div class="arrow">→</div>
+                        <div class="pipeline-step">Application</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Structure -->
+    <section class="project-structure">
+        <div class="container">
+            <h2>Project Structure</h2>
+            <div class="code-block">
+                <pre><code>.
+├── CMakeLists.txt                    # Build configuration
+├── src/                              # Source code
+│   ├── main.cpp                      # Demo application
+│   ├── networking/                   # Network module
+│   │   ├── socket.cpp
+│   │   └── network_manager.cpp
+│   ├── codec/                        # Codec module
+│   │   ├── frame.cpp
+│   │   ├── h264_encoder.cpp
+│   │   └── aac_encoder.cpp
+│   └── streaming/                    # Streaming engine
+│       ├── buffer.cpp
+│       └── engine.cpp
+├── include/                          # Header files
+├── build/                            # Build output
+└── website/                          # Documentation
+</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specifications Section -->
+    <section id="specs" class="specifications">
+        <div class="container">
+            <h2>Technical Specifications</h2>
+            <div class="specs-grid">
+                <div class="spec-group">
+                    <h3>Video Configuration</h3>
+                    <ul>
+                        <li><strong>Resolution:</strong> Up to 4K (3840×2160)</li>
+                        <li><strong>Frame Rate:</strong> 1-60 FPS</li>
+                        <li><strong>Bitrate:</strong> 100kbps - 50Mbps</li>
+                        <li><strong>Codec:</strong> H.264/AVC</li>
+                    </ul>
+                </div>
+                <div class="spec-group">
+                    <h3>Audio Configuration</h3>
+                    <ul>
+                        <li><strong>Sample Rates:</strong> 8kHz - 48kHz</li>
+                        <li><strong>Channels:</strong> Mono or Stereo</li>
+                        <li><strong>Bitrate:</strong> 32kbps - 320kbps</li>
+                        <li><strong>Codec:</strong> AAC</li>
+                    </ul>
+                </div>
+                <div class="spec-group">
+                    <h3>Network Configuration</h3>
+                    <ul>
+                        <li><strong>TCP Port:</strong> Configurable (default 5000)</li>
+                        <li><strong>UDP Port:</strong> Configurable (default 5001)</li>
+                        <li><strong>Buffer Size:</strong> Configurable (default 65536 bytes)</li>
+                        <li><strong>Max Queued:</strong> Configurable (default 100 packets)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started Section -->
+    <section id="getting-started" class="getting-started">
+        <div class="container">
+            <h2>Getting Started</h2>
+            
+            <div class="getting-started-content">
+                <div class="step">
+                    <h3>1. Clone the Repository</h3>
+                    <div class="code-block">
+                        <pre><code>git clone https://github.com/mandativamshidhar/multimedia-streaming.git
+cd multimedia-streaming</code></pre>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>2. Build the Project</h3>
+                    <p><strong>Windows (PowerShell):</strong></p>
+                    <div class="code-block">
+                        <pre><code>mkdir build
+cd build
+cmake ..
+cmake --build . --config Release
+.\bin\Release\streaming_app.exe</code></pre>
+                    </div>
+                    <p><strong>Linux/macOS:</strong></p>
+                    <div class="code-block">
+                        <pre><code>mkdir -p build
+cd build
+cmake ..
+cmake --build . -- -j$(nproc)
+./bin/streaming_app</code></pre>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>3. Basic Usage</h3>
+                    <div class="code-block">
+                        <pre><code>#include "streaming/engine.h"
+
+multimedia::streaming::StreamingEngine engine(
+    multimedia::streaming::StreamingMode::SENDER
+);
+
+// Initialize with server IP and ports
+engine.initialize("192.168.1.100", 5000, 5001);
+
+// Configure video: 1920x1080 @ 30fps, 5Mbps
+engine.configureVideo(1920, 1080, 30, 5000000);
+
+// Configure audio: 44.1kHz stereo, 128kbps
+engine.configureAudio(44100, 2, 128000);
+
+// Send frames
+engine.sendVideoFrame(rgbData, dataSize);
+engine.sendAudioFrame(audioData, sampleCount);
+
+// Get statistics
+auto stats = engine.getStatistics();</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requirements Section -->
+    <section class="requirements">
+        <div class="container">
+            <h2>System Requirements</h2>
+            <div class="requirements-grid">
+                <div class="req-card">
+                    <h3>Software</h3>
+                    <ul>
+                        <li>CMake 3.10+</li>
+                        <li>C++17 compatible compiler</li>
+                        <li>Windows SDK (Windows) or system libraries (Linux/macOS)</li>
+                    </ul>
+                </div>
+                <div class="req-card">
+                    <h3>Platform Support</h3>
+                    <ul>
+                        <li>✓ Windows (7+)</li>
+                        <li>✓ Linux (Ubuntu 18.04+)</li>
+                        <li>✓ macOS (10.14+)</li>
+                    </ul>
+                </div>
+                <div class="req-card">
+                    <h3>Performance</h3>
+                    <ul>
+                        <li>Multi-core processor (4+ cores recommended)</li>
+                        <li>Gigabit network (1000 Mbps+)</li>
+                        <li>2GB RAM minimum</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Section -->
+    <section id="github" class="github-section">
+        <div class="container">
+            <h2>Open Source Project</h2>
+            <p>This is a professional, open-source multimedia streaming system. Contributions and feedback are welcome!</p>
+            
+            <div class="github-profile">
+                <div class="profile-info">
+                    <h3>🔗 GitHub Repository</h3>
+                    <p><strong>Repository:</strong> <a href="https://github.com/mandativamshidhar/multimedia-streaming" target="_blank" style="color: white; text-decoration: underline;">multimedia-streaming</a></p>
+                    <p><strong>Owner:</strong> <a href="https://github.com/mandativamshidhar" target="_blank" style="color: white; text-decoration: underline;">mandativamshidhar</a></p>
+                    <p><strong>Branch:</strong> main</p>
+                </div>
+            </div>
+
+            <div class="github-links">
+                <a href="https://github.com/mandativamshidhar/multimedia-streaming" class="btn btn-primary" target="_blank">
+                    ⭐ View Repository
+                </a>
+                <a href="https://github.com/mandativamshidhar/multimedia-streaming/issues" class="btn btn-secondary" target="_blank">
+                    🐛 Report Issues
+                </a>
+                <a href="https://github.com/mandativamshidhar/multimedia-streaming/pulls" class="btn btn-secondary" target="_blank">
+                    🔀 Pull Requests
+                </a>
+                <a href="https://github.com/mandativamshidhar" class="btn btn-secondary" target="_blank">
+                    👤 My Profile
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Real-Time Multimedia Streaming System. All rights reserved.</p>
+            <p>Made with ❤️ for open-source streaming</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

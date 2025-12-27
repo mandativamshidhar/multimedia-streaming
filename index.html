@@ -298,6 +298,18 @@ auto stats = engine.getStatistics();</code></pre>
                 </div>
             </div>
 
+            <div class="site-status" style="margin-top:1rem; text-align:left;">
+                <h4 style="color:white; margin-bottom:0.5rem;">Site Status</h4>
+                <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                    <div style="background:rgba(255,255,255,0.08); padding:0.75rem 1rem; border-radius:0.5rem;">
+                        <strong>Status:</strong> <span id="status">Loading...</span>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.08); padding:0.75rem 1rem; border-radius:0.5rem;">
+                        <strong>Uptime:</strong> <span id="uptime">-</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="github-links">
                 <a href="https://github.com/mandativamshidhar/multimedia-streaming" class="btn btn-primary" target="_blank">
                     ⭐ View Repository
@@ -324,5 +336,6 @@ auto stats = engine.getStatistics();</code></pre>
     </footer>
 
     <script src="script.js"></script>
+    <script src="status.js"></script>
 </body>
 </html>

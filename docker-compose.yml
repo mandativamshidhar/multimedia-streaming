@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  multimedia-streaming:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: multimedia-streaming-server
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    environment:
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - streaming-network
+    healthcheck:
+      test: ["CMD", "test", "-f", "/app/streaming_app"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  streaming-network:
+    driver: bridge

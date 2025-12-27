@@ -2,6 +2,8 @@
 
 A professional C++ multimedia streaming module for Android/Linux/Windows with H.264/AAC codec integration, TCP/UDP networking, and optimized buffering for low-latency media delivery.
 
+🌐 **Now available online!** See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) to deploy to cloud, Docker, or GitHub.
+
 ## Project Overview
 
 - **Language**: C++ (C++17 standard)
@@ -10,6 +12,7 @@ A professional C++ multimedia streaming module for Android/Linux/Windows with H.
 - **Codecs**: H.264 (video), AAC (audio)
 - **Networking**: TCP/UDP dual-stack
 - **Features**: Multithreading, frame buffering, low-latency streaming
+- **Distribution**: GitHub, Docker, Cloud-ready
 
 ## Project Structure
 
@@ -257,6 +260,32 @@ The system is designed for easy extension:
 - [C++17 Standard](https://en.cppreference.com/)
 - H.264/AVC Codec Standard (ITU-T H.264)
 - AAC Audio Codec (ISO/IEC 13818-7)
+
+## Deployment & Distribution
+
+The system is ready to deploy to production environments:
+
+### Online Options
+- **GitHub**: Source code and releases (FREE)
+- **Docker Hub**: Containerized deployment (FREE)
+- **AWS/Google Cloud/Azure**: Live streaming servers
+- **Heroku**: Easy cloud deployment (FREE tier)
+
+See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) for:
+- Step-by-step GitHub setup
+- Docker containerization
+- Cloud deployment options
+- Creating releases with binaries
+- Landing page setup
+
+### Quick Start - Going Live
+```powershell
+# 1. Create GitHub repo at github.com
+# 2. Push to GitHub
+git remote add origin https://github.com/YOUR_USERNAME/multimedia-streaming.git
+git push -u origin main
+# 3. Share the link - DONE! 🚀
+```
 
 ## License
 

@@ -7,6 +7,8 @@
 #include <mutex>
 #include <condition_variable>
 #include <atomic>
+#include <vector>
+#include <string>
 
 namespace multimedia {
 namespace networking {
@@ -57,6 +59,15 @@ private:
     
     size_t receiveBufferSize_;
     size_t maxPackets_;
+
+    // For TCP server: accepted client sockets
+    std::vector<std::shared_ptr<Socket>> clientSockets_;
+    mutable std::mutex clientMutex_;
+
+    // Mode and server address for UDP client
+    bool isServer_ = false;
+    std::string serverAddress_;
+    int serverUdpPort_ = 0;
 
     void receiveThreadFunction();
 };

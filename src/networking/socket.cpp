@@ -106,7 +106,14 @@ std::shared_ptr<Socket> Socket::accept()
     
     int clientFd = ::accept(fd_, (sockaddr*)&clientAddr, &addrLen);
     if (clientFd == INVALID_SOCKET) {
-        std::cerr << "Accept failed" << std::endl;
+#ifdef _WIN32
+        int err = WSAGetLastError();
+        if (err == WSAEWOULDBLOCK) return nullptr;
+        std::cerr << "Accept failed: " << err << std::endl;
+#else
+        if (errno == EWOULDBLOCK || errno == EAGAIN) return nullptr;
+        std::cerr << "Accept failed: " << strerror(errno) << std::endl;
+#endif
         return nullptr;
     }
     

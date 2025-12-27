@@ -34,8 +34,11 @@ bool NetworkManager::initializeServer(int tcpPort, int udpPort)
     }
     
     udpSocket_->setNonBlocking(true);
+    // Make TCP listening socket non-blocking so accept() is non-blocking
+    tcpSocket_->setNonBlocking(true);
     
     initialized_ = true;
+    isServer_ = true;
     running_ = true;
     receiveThread_ = std::thread(&NetworkManager::receiveThreadFunction, this);
     
@@ -56,8 +59,12 @@ bool NetworkManager::initializeClient(const std::string& serverAddress, int tcpP
     
     // Create UDP socket
     udpSocket_ = std::make_shared<Socket>(SocketType::UDP, SocketMode::CLIENT);
+    // store server address/port for UDP sends
+    serverAddress_ = serverAddress;
+    serverUdpPort_ = udpPort;
     
     initialized_ = true;
+    isServer_ = false;
     running_ = true;
     receiveThread_ = std::thread(&NetworkManager::receiveThreadFunction, this);
     
@@ -76,10 +83,12 @@ bool NetworkManager::sendViaTCP(const std::vector<uint8_t>& data)
 
 bool NetworkManager::sendViaUDP(const std::vector<uint8_t>& data)
 {
-    if (!udpSocket_) {
-        return false;
+    if (!udpSocket_) return false;
+    if (!isServer_ && !serverAddress_.empty() && serverUdpPort_ > 0) {
+        return udpSocket_->sendTo(serverAddress_, serverUdpPort_, data);
     }
-    return true; // Would need peer address for client mode
+    // Server mode: no specific peer to send to in this simple implementation
+    return false;
 }
 
 bool NetworkManager::hasPackets() const
@@ -108,6 +117,37 @@ bool NetworkManager::isConnected() const
 void NetworkManager::receiveThreadFunction()
 {
     while (running_) {
+        // First, accept any new TCP clients (server mode)
+        if (isServer_ && tcpSocket_) {
+            auto client = tcpSocket_->accept();
+            if (client) {
+                client->setNonBlocking(true);
+                std::lock_guard<std::mutex> lock(clientMutex_);
+                clientSockets_.push_back(client);
+            }
+        }
+
+        // Read from TCP client sockets
+        if (!clientSockets_.empty()) {
+            std::lock_guard<std::mutex> lock(clientMutex_);
+            for (auto it = clientSockets_.begin(); it != clientSockets_.end();) {
+                auto sock = *it;
+                if (!sock) { it = clientSockets_.erase(it); continue; }
+                auto data = sock->recv(receiveBufferSize_);
+                if (!data.empty()) {
+                    std::lock_guard<std::mutex> qlock(queueMutex_);
+                    if (packetQueue_.size() < maxPackets_) {
+                        packetQueue_.push({data, "", 0, 0});
+                    }
+                }
+                if (!sock->isConnected()) {
+                    it = clientSockets_.erase(it);
+                } else {
+                    ++it;
+                }
+            }
+        }
+
         if (udpSocket_) {
             std::string address;
             int port;

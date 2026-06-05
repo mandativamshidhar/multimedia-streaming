@@ -293,4 +293,4 @@ This project is provided as-is for educational and commercial use.
 
 ## Author
 
-Multimedia Streaming System Development Team
+Mandati Vamshidhar Reddy
